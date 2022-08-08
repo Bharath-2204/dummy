@@ -58,11 +58,12 @@ def predict(img):
                                 
 class VideoCapture:
     def recv(self, frame):
+      while True:
         img = frame.to_ndarray(format="bgr24")
         
         img = predict(img)
-        while True:
-          return av.VideoFrame.from_ndarray(cv2.flip(img,1), format="bgr24")
+        
+        return av.VideoFrame.from_ndarray(cv2.flip(img,1), format="bgr24")
     
 webrtc_streamer(
     key="TEST",
