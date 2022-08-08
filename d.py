@@ -61,7 +61,8 @@ class VideoCapture:
         img = frame.to_ndarray(format="bgr24")
         
         img = predict(img)
-        return av.VideoFrame.from_ndarray(cv2.flip(img,1), format="bgr24")
+        while True:
+          return av.VideoFrame.from_ndarray(cv2.flip(img,1), format="bgr24")
     
 webrtc_streamer(
     key="TEST",
