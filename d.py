@@ -6,17 +6,10 @@ import av
 from streamlit_webrtc import webrtc_streamer, WebRtcMode, RTCConfiguration
 
 
-  st.write("##### Choose the shape of the Object you want to measure")    
-  col1, col2 = st.columns([1,3])
-  with col1:
-                  check1 = st.button("Rectangle/Square")
-  with col2:
-                  check2 = st.button("Circle")
-  Frame = st.image([])
-  para = cv2.aruco.DetectorParameters_create()
-  aru_dict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_100)    #aruco dictionary
-
-  def predict(img):
+  
+para = cv2.aruco.DetectorParameters_create()
+aru_dict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_100)    #aruco dictionary
+def predict(img):
                           Thr=[100,200]
                           image_greyscale = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)                             #Finding the contours and processing the image
                           image_blur = cv2.GaussianBlur(img,(5,7),0)
@@ -55,8 +48,7 @@ from streamlit_webrtc import webrtc_streamer, WebRtcMode, RTCConfiguration
                                       cv2.putText(img,"Height : {}".format(round(tall,2)),(int(x+135),int(y - 100)), cv2.FONT_HERSHEY_PLAIN,3,(0,0,100),3)
 
                           return cv2.flip(img, 1)        
-
-  class VideoCapture:
+class VideoCapture:
       def recv(self, frame):
        
           img = frame.to_ndarray(format="bgr24")
@@ -65,7 +57,7 @@ from streamlit_webrtc import webrtc_streamer, WebRtcMode, RTCConfiguration
 
           return av.VideoFrame.from_ndarray(cv2.flip(img,1), format="bgr24")
 
-  webrtc_streamer(
+webrtc_streamer(
     key="TEST",
     mode=WebRtcMode.SENDRECV,
     rtc_configuration=RTCConfiguration({"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}),
