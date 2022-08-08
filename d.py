@@ -5,7 +5,7 @@ from PIL import Image
 import av
 from streamlit_webrtc import webrtc_streamer, WebRtcMode, RTCConfiguration
 
-try:
+
   st.write("##### Choose the shape of the Object you want to measure")    
   col1, col2 = st.columns([1,3])
   with col1:
@@ -58,7 +58,7 @@ try:
 
   class VideoCapture:
       def recv(self, frame):
-        while True:
+       
           img = frame.to_ndarray(format="bgr24")
 
           img = predict(img)
@@ -66,43 +66,15 @@ try:
           return av.VideoFrame.from_ndarray(cv2.flip(img,1), format="bgr24")
 
   webrtc_streamer(
-      key="TEST",
-      mode=WebRtcMode.SENDRECV,
-      rtc_configuration=RTCConfiguration({"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}),
-      media_stream_constraints={"video": True, "audio": False},
-      video_processor_factory=VideoCapture,
-      async_processing=True,
-  )
-except:
-  pass
-"""def getcircles(img):
-                
-                    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-                    gray_blurred = cv2.medianBlur(gray,5)
-                
-                    corners, _, _ = cv2.aruco.detectMarkers(img, aru_dict, parameters=para)
-                    if corners:
-                        int_corners = np.int0(corners)
-                        cv2.polylines(img, int_corners, True, (0, 255, 0), 5)
-                        aru_peri = cv2.arcLength(corners[0], True)
-                        print(aru_peri)
-                        pix_cm_rat = aru_peri / 20
-                        
-                        detected_circles = cv2.HoughCircles(gray_blurred,               # Apply Hough transform on the blurred image
-                                        cv2.HOUGH_GRADIENT, 1, 800, param1 = 50,
-                                    param2 = 70, minRadius = 1, maxRadius = 1000)
+    key="TEST",
+    mode=WebRtcMode.SENDRECV,
+    rtc_configuration=RTCConfiguration({"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}),
+    media_stream_constraints={"video": True, "audio": False},
+    video_processor_factory=VideoCapture,
+    async_processing=True,
+)
 
-                        if detected_circles is not None:
-                            detected_circles = np.uint16(np.around(detected_circles))
-                            for pt in detected_circles[0, :]:
-                                
-                                    a, b, r = pt[0], pt[1], pt[2]
-                                    if r>0:
-                                        cv2.circle(img, (a, b), r, (0, 255, 0), 2)      #Highlight the circle found
-                                        r=r/pix_cm_rat
-                                    
-                                        cv2.putText(img,"Radius : {}".format(round(r,2)),org =(900,300), fontFace = cv2.FONT_HERSHEY_PLAIN,fontScale = 3,color = (100,0,0),thickness = 2)
-                                        cv2.circle(img, (a, b), 1, (0, 0, 255), 3)      #Center of the circle"""
+
                                                             
                                 
                        
