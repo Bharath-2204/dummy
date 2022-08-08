@@ -67,7 +67,7 @@ class VideoCapture:
 webrtc_streamer(
     key="TEST",
     mode=WebRtcMode.SENDRECV,
-    RTC_CONFIGURATION=RTCConfiguration({"RTCIceServer": [{
+    rtc_configuration=RTCConfiguration({"RTCIceServer": [{
         "urls": ["turn:turn.xxx.dev:5349"],
         "username": "user",
         "credential": "password",
