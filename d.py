@@ -68,7 +68,7 @@ try:
   webrtc_streamer(
       key="TEST",
       mode=WebRtcMode.SENDRECV,
-      rtc_configuration=RTCConfiguration({"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}),
+      rtc_configuration=RTCConfiguration({"iceServers": [{"urls": ["stun:stun1.l.google.com:19302"]}]}),
       media_stream_constraints={"video": True, "audio": False},
       video_processor_factory=VideoCapture,
       async_processing=True,
