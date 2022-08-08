@@ -44,8 +44,8 @@ def predict(img):
                                       tall =w/pix_cm_rat
                                       cv2.circle(img,(int(x),int(y)),5,(0,0,255), -1)
                                       cv2.polylines(img,[box],True,(0,255,0),2)
-                                      cv2.putText(img,"Width : {}".format(round(wide,2)),(int(x+135),int(y - 15)), cv2.FONT_HERSHEY_PLAIN,3,(0,0,100),3)
-                                      cv2.putText(img,"Height : {}".format(round(tall,2)),(int(x+135),int(y - 100)), cv2.FONT_HERSHEY_PLAIN,3,(0,0,100),3)
+                                      cv2.putText(img,"Width : {}".format(round(wide,2)),(int(x),int(y - 15)), cv2.FONT_HERSHEY_PLAIN,3,(0,0,100),3)
+                                      cv2.putText(img,"Height : {}".format(round(tall,2)),(int(x),int(y - 100)), cv2.FONT_HERSHEY_PLAIN,3,(0,0,100),3)
 
                           return cv2.flip(img, 1)        
 class VideoCapture:
