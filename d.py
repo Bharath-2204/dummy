@@ -66,7 +66,7 @@ try:
           return av.VideoFrame.from_ndarray(cv2.flip(img,1), format="bgr24")
 
   webrtc_streamer(
-      key="WYH",
+      key="TEST",
       mode=WebRtcMode.SENDRECV,
       rtc_configuration=RTCConfiguration({"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}),
       media_stream_constraints={"video": True, "audio": False},
